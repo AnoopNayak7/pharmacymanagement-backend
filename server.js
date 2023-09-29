@@ -8,7 +8,7 @@ require('dotenv').config();
 const app = express();
 app.use(express.json());
 app.use(cors({
-    origin: ['https://medstore-kappa.vercel.app', 'http://localhost:3000'], 
+    origin: ['http://localhost:3000'],
     credentials: true,
 }));
 app.use(cookieParser());
@@ -38,7 +38,7 @@ app.get('/health', (req, res) => {
     res.json({ status: 'Server is healthy' });
 });
 
-const PORT = process.env.PORT || 6000;
+const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
     console.log('Server is running on port', PORT);
-});
+})

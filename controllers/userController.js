@@ -82,6 +82,7 @@ const userCtrl = {
         success: true,
         msg: "Login successful",
         data: {
+          access_token: access_token,
           id: user._id,
           name: user.name,
           email: user.email,
