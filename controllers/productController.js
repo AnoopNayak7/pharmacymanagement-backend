@@ -41,20 +41,33 @@ const productController = {
 
   getAllProducts: async (req, res) => {
     try {
-      const products = await Product.find();
+      const searchTerm = req.query.searchTerm;
+      let products;
+
+      if (searchTerm) {
+          products = await Product.find({
+              $or: [
+                  { name: { $regex: new RegExp(searchTerm, 'i') } },
+                  { description: { $regex: new RegExp(searchTerm, 'i') } },
+              ],
+          });
+      } else {
+          products = await Product.find();
+      }
+
       res.status(200).json({
-        success: true,
-        message: 'Products fetched successfully',
-        count: products.length,
-        data: products,
+          success: true,
+          message: 'Products fetched successfully',
+          count: products.length,
+          data: products,
       });
-    } catch (err) {
+  } catch (err) {
       res.status(500).json({
-        success: false,
-        message: 'Internal Server Error',
-        error: err.message,
+          success: false,
+          message: 'Internal Server Error',
+          error: err.message,
       });
-    }
+  }
   },
 
   getProductById: async (req, res) => {

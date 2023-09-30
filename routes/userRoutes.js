@@ -1,10 +1,6 @@
 const Router = require('express').Router()
 const userCtrl = require('../controllers/userController')
 
-// Middleware Imports
-const adminAuth = require('../middleware/auth')
-
-// User Endpoints
 Router.post(`/register`, userCtrl.register)
 
 Router.post('/login', userCtrl.login)

@@ -29,10 +29,12 @@ mongoose.connect(URI, {
 const userRoutes = require('./routes/userRoutes');
 const productRoutes = require('./routes/productRoutes');
 const ordersRoutes = require('./routes/ordersRoutes')
+const cartRoutes = require('./routes/cartRoutes')
 
 app.use('/auth', userRoutes);
 app.use('/products', productRoutes);
 app.use('/orders', ordersRoutes);
+app.use('/cart', cartRoutes);
 
 app.get('/health', (req, res) => {
     res.json({ status: 'Server is healthy' });
